@@ -67,6 +67,7 @@ test("every file referenced by the manifest, popup and options pages exists", ()
     ...manifest.background.scripts,
     manifest.message_display_action.default_popup,
     manifest.message_display_action.default_icon,
+    ...Object.values(manifest.icons),
     manifest.options_ui.page,
     manifest.experiment_apis.perch.schema,
     manifest.experiment_apis.perch.parent.script,

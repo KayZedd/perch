@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Perch">
+  <rect width="128" height="128" rx="30" fill="#2a251d"/>
+  <rect x="34" y="26" width="13" height="78" rx="6.5" fill="#fcf9f2"/>
+  <circle cx="68" cy="50" r="21" fill="none" stroke="#fcf9f2" stroke-width="13"/>
+  <path d="M86 40 L108 50 L86 60 Z" fill="#e98a5c"/>
+  <circle cx="66" cy="46" r="4.5" fill="#e98a5c"/>
+</svg>

@@ -1,3 +1,5 @@
+<p align="center"><img src="extension/icons/perch.svg" width="96" alt="Perch logo"></p>
+
 # Perch
 
 A warm-paper reskin for Thunderbird and [Betterbird](https://www.betterbird.eu/), plus a handful of small

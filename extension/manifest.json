@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Perch: Betterbird Reskin",
+  "name": "Perch",
   "short_name": "Perch",
   "version": "0.1.0",
   "description": "A warm-paper reskin for Thunderbird and Betterbird with palettes you can edit, plus snooze, one-click unsubscribe, sender initials, attachment preview, account colours and reading typography.",
@@ -21,6 +21,7 @@
     "compose",
     "menus"
   ],
+  "icons": { "48": "icons/perch.svg", "96": "icons/perch.svg" },
   "background": {
     "scripts": ["lib/themes.js", "lib/unsub.js", "lib/snooze.js", "lib/sender.js", "background.js"]
   },

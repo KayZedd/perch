@@ -71,6 +71,10 @@ dev/                  screenshot harness and an end-to-end snooze self-test (not
 docs/PUBLISHING.md    how to submit to addons.thunderbird.net
 ```
 
+## Build
+
+See [BUILDING.md](BUILDING.md) (Node 22, `zip`, `node tools/package.mjs`, no dependencies).
+
 ## Develop
 
 ```bash

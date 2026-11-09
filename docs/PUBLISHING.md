@@ -20,7 +20,7 @@ Requirements from the [ATN review policy](https://thunderbird.github.io/atn-revi
 - **Experiments mean manual review.** Expect a delay and questions. Keep the Experiment small and explain it in the notes (it registers a stylesheet,
   injects initials and a popover into the message list, lists account names).
 - **Human-readable source and build steps.** The xpi contains readable JS, but `extension/css/perch.css` is generated. Upload a source archive
-  (`git archive --format=zip -o perch-source.zip HEAD`) and write: "Node 22. `node tools/package.mjs` rebuilds the xpi byte-for-byte except zip timestamps."
+  (`git archive --format=zip -o perch-source.zip HEAD`) and point the reviewer to `BUILDING.md` (Node 22, zip, `node tools/package.mjs`; contents identical to the xpi, only zip timestamps differ).
 - **Privacy policy field must contain the full text**, not a link: paste `PRIVACY.md`. Put a short summary in the listing description.
 - **Listing description** must say everything the add-on does: restyles the whole window, adds a header button, adds a context-menu entry, creates a `Snoozed` folder, opens links on request.
 - **Testing notes** for the reviewer: "Install, open Settings tab Perch, toggle features. Snooze: select a message, header button, choose a time; it moves to `Snoozed` and returns unread."

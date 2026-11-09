@@ -217,7 +217,7 @@ body.account-central {
 
 /* Selected / current thread card */
 #threadTree[rows="thread-card"] .card-layout.selected {
-  background-color: var(--perch-accent-soft-2);
+  background-color: var(--perch-accent-soft);
   outline: 1px solid color-mix(in srgb, var(--perch-accent) 45%, transparent);
   outline-offset: -1px;
 }

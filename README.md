@@ -4,7 +4,7 @@ A warm-paper reskin for Thunderbird and [Betterbird](https://www.betterbird.eu/)
 mail features. Light and dark, editable palettes, every feature has an off switch.
 
 > Not affiliated with or endorsed by the Thunderbird or Betterbird projects.
-> Tested on Betterbird 153.6.0esr-bb12. Thunderbird 140 ESR and newer is the declared minimum but has not been tested by the author.
+> Tested on Thunderbird 140.17.0esr, Thunderbird 153.6.0esr and Betterbird 153.6.0esr-bb12 (theme, sender initials, attachment preview, snooze round trip). Declared range: 140 to 153.x. Experiments are tied to the application version, so later versions are not claimed until tested.
 
 ## What you get
 

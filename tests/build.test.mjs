@@ -92,3 +92,10 @@ test("house rule also holds for the options and popup pages", () => {
     assert.equal(css.match(/border-(left|right|top|bottom|inline|block)[a-z-]*\s*:|box-shadow:\s*inset/gi), null, f);
   }
 });
+
+test("manifest declares strict_min and strict_max_version (ATN requires a max for Experiments)", () => {
+  const g = manifest.browser_specific_settings.gecko;
+  assert.match(g.strict_min_version, /^\d+\.\d+$/);
+  assert.match(g.strict_max_version, /^\d+\.\*$/);
+  assert.ok(Number.parseInt(g.strict_max_version) >= Number.parseInt(g.strict_min_version));
+});

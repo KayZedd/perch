@@ -6,7 +6,8 @@
   "description": "A warm-paper reskin for Thunderbird and Betterbird with palettes you can edit, plus snooze, one-click unsubscribe, sender initials, attachment preview, account colours and reading typography.",
   "author": "KayZedd",
   "browser_specific_settings": {
-    "gecko": { "id": "perch@kayzedd", "strict_min_version": "140.0" }
+    "gecko": { "id": "perch@kayzedd", "strict_min_version": "140.0",
+      "strict_max_version": "153.*" }
   },
   "permissions": [
     "storage",

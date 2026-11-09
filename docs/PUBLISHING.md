@@ -26,6 +26,7 @@ Requirements from the [ATN review policy](https://thunderbird.github.io/atn-revi
 - **Testing notes** for the reviewer: "Install, open Settings tab Perch, toggle features. Snooze: select a message, header button, choose a time; it moves to `Snoozed` and returns unread."
 - **Name.** Perch avoids the Thunderbird trademark. Check availability when you create the listing; the author's search found no existing add-on with that name.
 - **Screenshots** (ATN asks for them): `dev/shot.sh` produces them; store them outside git.
+- **`strict_max_version` is mandatory for Experiments** (ATN's validator rejects the upload without it). Perch declares `153.*`; raise it only after testing the new version with `dev/shot.sh` and `dev/selftest.sh` (set `BB=/path/to/thunderbird`).
 - Add-on id is `perch@kayzedd`. It cannot change after the first upload.
 
 ## Before every release

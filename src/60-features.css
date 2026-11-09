@@ -67,3 +67,9 @@
 .perch-attach-more {
   color: var(--perch-muted);
 }
+
+/* Thunderbird 140 draws a start-side indicator bar on the selected card (a one-sided stripe).
+   The selected card already has a full outline and tint from Perch. */
+#threadTree[rows="thread-card"] .card-layout .card-container::before {
+  display: none;
+}

@@ -17,7 +17,7 @@ if [ -n "${EXT:-}" ]; then
 fi
 export MOZ_ENABLE_WAYLAND=0 GDK_BACKEND=x11
 xvfb-run -a -s "-screen 0 1500x900x24" bash -c '
-  betterbird -profile "'"$PROF"'" -no-remote "$@" >/tmp/perch.log 2>&1 &
+  ${BB:-betterbird} -profile "'"$PROF"'" -no-remote "$@" >/tmp/perch.log 2>&1 &
   PID=$!
   sleep '"${WAIT:-12}"'
   W=$(xdotool search --onlyvisible --class "betterbird|thunderbird" | head -1)

@@ -493,7 +493,7 @@
 
 
 :root[lightweightthemes] #threadTree[rows="thread-card"] .card-layout.selected {
-  background-color: var(--perch-accent-soft-2) !important;
+  background-color: var(--perch-accent-soft) !important;
   outline: 1px solid color-mix(in srgb, var(--perch-accent) 45%, transparent) !important;
   outline-offset: -1px !important;
 }
@@ -952,5 +952,10 @@
 
 :root[lightweightthemes] .perch-attach-more {
   color: var(--perch-muted) !important;
+}
+
+
+:root[lightweightthemes] #threadTree[rows="thread-card"] .card-layout .card-container::before {
+  display: none !important;
 }
 

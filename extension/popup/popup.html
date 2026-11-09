@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Perch</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div id="snoozeSection">
+  <h1>Snooze until</h1>
+  <ul id="presets" class="list"></ul>
+  <form id="custom">
+    <label for="when">Pick a time</label>
+    <div class="row">
+      <input id="when" type="datetime-local" required>
+      <button type="submit">Snooze</button>
+    </div>
+  </form>
+  </div>
+  <div id="unsub" hidden>
+    <h1>Mailing list</h1>
+    <button id="unsubBtn" class="wide"></button>
+  </div>
+  <div id="senderBox" hidden>
+    <button id="senderBtn" type="button" class="link">All messages from this sender</button>
+  </div>
+  <p id="status" role="status"></p>
+  <script src="../lib/themes.js"></script>
+  <script src="../lib/snooze.js"></script>
+  <script src="../lib/unsub.js"></script>
+  <script src="../lib/sender.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

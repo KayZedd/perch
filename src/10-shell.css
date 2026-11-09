@@ -1,0 +1,130 @@
+/* Window shell: canvas, toolbar, spaces dock, tab strip, status bar. */
+#messengerBody,
+#tabmail,
+#tabmail-container,
+#tabmail-tabbox,
+#navigation-toolbox,
+#titlebar,
+#unifiedToolbarContainer,
+#unifiedToolbar,
+#tabmail-tabs,
+#tabs-toolbar,
+#status-bar {
+  background-color: var(--perch-canvas);
+  color: var(--perch-text);
+}
+
+:root[lightweightthemes] {
+  background-color: var(--perch-canvas);
+  color: var(--perch-text);
+  font-size: 13px;
+  letter-spacing: 0.005em;
+  scrollbar-color: color-mix(in srgb, var(--perch-muted) 45%, transparent) transparent;
+  scrollbar-width: thin;
+}
+
+/* Unified toolbar: floating search pill, flat buttons */
+#unifiedToolbar {
+  padding-block: 6px 2px;
+  border: none;
+  box-shadow: none;
+}
+
+#unifiedToolbarContent {
+  gap: 6px;
+}
+
+.unified-toolbar-button,
+#unifiedToolbarContent .button {
+  border-radius: var(--perch-radius-md);
+  border-color: transparent;
+}
+
+.unified-toolbar-button:hover:not([disabled]) {
+  background-color: var(--perch-card-3);
+}
+
+.unified-toolbar-button:active:not([disabled]),
+.unified-toolbar-button[aria-pressed="true"] {
+  background-color: var(--perch-accent-soft-2);
+  color: var(--perch-accent);
+}
+
+#unifiedToolbar .search-bar,
+.search-bar {
+  border-radius: 999px;
+}
+
+/* Spaces bar becomes a floating dock */
+.spaces-toolbar:not([hidden]) {
+  background-color: var(--perch-canvas);
+  border: none;
+  padding: 8px 4px 8px 10px;
+}
+
+.spaces-toolbar-top-container,
+.spaces-toolbar-bottom-container,
+#spacesToolbarAddonsContainer:has(.spaces-toolbar-button) {
+  background-color: var(--perch-card);
+  border: 1px solid var(--perch-border);
+  border-radius: 20px;
+  box-shadow: var(--perch-shadow);
+  padding: 8px 4px;
+  gap: 4px;
+}
+
+#spacesToolbarAddonsContainer:not(:has(.spaces-toolbar-button)) {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.spaces-toolbar:not([hidden]) {
+  gap: 10px;
+}
+
+.spaces-toolbar-button {
+  border-radius: 14px;
+  border-color: transparent;
+}
+
+.spaces-toolbar-button:hover:not(.current) {
+  background-color: var(--perch-card-3);
+}
+
+.spaces-toolbar-button.current {
+  background-color: var(--perch-accent);
+  color: var(--perch-accent-text);
+}
+
+.spaces-toolbar-button.current > img {
+  filter: brightness(0) invert(1);
+}
+
+/* Tabs */
+#tabmail-tabs {
+  border: none;
+}
+
+.tabmail-tab {
+  border-radius: var(--perch-radius-md) var(--perch-radius-md) 0 0;
+}
+
+.tabmail-tab[selected="true"] {
+  background-color: var(--perch-card);
+}
+
+.tab-line {
+  background-color: var(--perch-accent);
+  height: 3px;
+  border-radius: 3px;
+}
+
+/* Status bar */
+#status-bar {
+  border: none;
+  color: var(--perch-muted);
+  font-size: 11.5px;
+  padding-inline: 10px;
+}

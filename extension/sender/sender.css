@@ -1,0 +1,24 @@
+:root {
+  color-scheme: light dark;
+  /* defaults; sender.js overrides these from the chosen palette */
+  --bg: light-dark(#ece4d6, #17140f);
+  --card: light-dark(#fcf9f2, #221e18);
+  --fg: light-dark(#2a251d, #efe7d6);
+  --muted: light-dark(#6f6556, #a89d89);
+  --line: light-dark(#e2d8c5, #382f26);
+  --hover: light-dark(#ece4d3, #342e25);
+  --accent: light-dark(#b9502a, #e98a5c);
+}
+html, body { margin: 0; background: var(--bg); color: var(--fg); font: 14px system-ui, sans-serif; }
+main { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+h1 { font: 600 26px "Source Serif 4", "Noto Serif", Georgia, serif; margin: 0 0 6px; overflow-wrap: anywhere; }
+.muted { color: var(--muted); margin: 0 0 18px; }
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.list:empty { display: none; }
+.list li { background: var(--card); }
+.list button { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; width: 100%; padding: 12px 16px; margin: 0; border: none; background: transparent; color: inherit; font: inherit; text-align: start; cursor: pointer; }
+.list button:hover, .list button:focus-visible { background: var(--hover); outline: none; }
+.list .subject { font-weight: 400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.list .unread .subject { font-weight: 700; }
+.list .meta { color: var(--muted); font-size: 12px; grid-column: 1 / -1; }
+.list time { color: var(--muted); font-size: 12px; align-self: center; }

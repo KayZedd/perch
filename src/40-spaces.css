@@ -1,0 +1,167 @@
+/* Address book, calendar, tasks, chat, tab strip. */
+
+/* Tab strip: quiet pills, no ruled line */
+#tabmail-container,
+#tabmail-tabbox,
+#tabmail-tabs,
+#tabpanelcontainer {
+  border: none;
+  box-shadow: none;
+}
+
+#tabmail-tabs {
+  padding: 4px 10px 0 0;
+  gap: 4px;
+}
+
+.tabmail-tab {
+  border: none;
+  border-radius: 10px;
+  margin: 0 2px 6px;
+  min-height: 30px;
+  color: var(--perch-text-2);
+  background: transparent;
+}
+
+.tabmail-tab:hover:not([selected="true"]) {
+  background-color: var(--perch-card-3);
+}
+
+.tabmail-tab[selected="true"] {
+  background-color: var(--perch-card);
+  color: var(--perch-text);
+  outline: 1px solid var(--perch-border-strong);
+  outline-offset: -1px;
+}
+
+.tab-line {
+  display: none;
+}
+
+#tabpanelcontainer {
+  background-color: var(--perch-canvas);
+}
+
+/* Address book: same floating-card treatment as mail */
+body:has(#booksPane) {
+  background-color: var(--perch-canvas);
+  padding: 0 10px 10px 0;
+  box-sizing: border-box;
+}
+
+#booksPane,
+#cardsPane,
+#detailsPane {
+  background-color: var(--perch-card);
+  border: 1px solid var(--perch-border);
+  border-radius: var(--perch-radius);
+  overflow: hidden;
+}
+
+#booksSplitter,
+#sharedSplitter {
+  background: transparent;
+  border: none;
+  inline-size: 10px;
+  min-inline-size: 10px;
+}
+
+#booksPane #booksPaneCreateContact,
+#cardsPane .button-primary,
+#placeholderEmptyBook .button-primary {
+  background-color: var(--perch-accent);
+  color: var(--perch-accent-text);
+  border-radius: 8px;
+}
+
+#booksPane li > .container,
+#booksPane .bookRow {
+  border-radius: 8px;
+}
+
+/* Calendar + tasks: sidebar and view become cards on the canvas */
+#calendarContent,
+#calendar-task-box {
+  background-color: var(--perch-canvas);
+  padding: 0 10px 10px 0;
+  gap: 10px;
+}
+
+#calSidebar,
+#calendar-view-box,
+#calendar-panel,
+#task-view-box {
+  background-color: var(--perch-card);
+  border: 1px solid var(--perch-border);
+  border-radius: var(--perch-radius);
+  overflow: hidden;
+}
+
+#calendar-view-box {
+  border-radius: var(--perch-radius);
+}
+
+.calendar-view-toggle,
+#view-tabs radio {
+  border-radius: 999px;
+}
+
+#calendar-list-pane {
+  background: transparent;
+}
+
+#sidePanelNewEvent,
+#sidePanelNewTask,
+#calendar-task-view-box .button-primary {
+  background-color: var(--perch-accent);
+  color: var(--perch-accent-text);
+  border-radius: 8px;
+}
+
+/* Chat */
+#chatPanel {
+  background-color: var(--perch-canvas);
+  padding: 0 10px 10px 0;
+}
+
+#listPaneBox,
+#conversationsBox {
+  background-color: var(--perch-card);
+  border: 1px solid var(--perch-border);
+  border-radius: var(--perch-radius);
+  overflow: hidden;
+}
+
+#listSplitter {
+  background: transparent;
+  border: none;
+  min-width: 10px;
+}
+
+#chat-view-toolbox,
+#chat-toolbar {
+  background-color: var(--perch-canvas);
+  border: none;
+}
+
+/* Remove ruled lines under the toolbar and tab strip */
+#navigation-toolbox,
+#unifiedToolbarContainer,
+#unifiedToolbar,
+#titlebar,
+#tabs-toolbar,
+#tabmail-tabs::after,
+#tabmail-tabs::before,
+#tabmail-arrowscrollbox,
+#tabmail-arrowscrollbox::part(scrollbox) {
+  border: none;
+  box-shadow: none;
+  background-image: none;
+}
+
+#noConvScreen,
+#noConvBox,
+#noAccountScreen,
+#chat-notification-top {
+  background-color: transparent;
+}

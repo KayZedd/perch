@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Perch settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <h1>Perch</h1>
+
+    <section aria-labelledby="h-features">
+      <h2 id="h-features">Features</h2>
+      <div id="features"></div>
+    </section>
+
+    <section aria-labelledby="h-palette">
+      <h2 id="h-palette">Palette</h2>
+      <div id="palettes" class="cards" role="radiogroup" aria-label="Palette"></div>
+      <div class="field">
+        <label for="accent">Accent colour</label>
+        <input id="accent" type="color">
+        <button id="accentReset" type="button">Use palette default</button>
+      </div>
+
+      <form id="editor" class="editor" hidden>
+        <h3 id="editorTitle">New palette</h3>
+        <div class="field">
+          <label for="pName">Name</label>
+          <input id="pName" type="text" maxlength="40" required>
+          <label for="pBase">Start from</label>
+          <select id="pBase"></select>
+        </div>
+        <div id="pColors"></div>
+        <div id="pPreview" class="swatch big" aria-hidden="true"></div>
+        <ul id="pWarn" class="warn" role="status"></ul>
+        <div class="field">
+          <button type="submit" class="primary">Save palette</button>
+          <button id="pCancel" type="button">Cancel</button>
+          <button id="pDelete" type="button" class="danger" hidden>Delete</button>
+        </div>
+        <details>
+          <summary>Share (JSON)</summary>
+          <textarea id="pJson" rows="6" spellcheck="false" aria-label="Palette JSON"></textarea>
+          <div class="field">
+            <button id="pExport" type="button">Fill from editor</button>
+            <button id="pImport" type="button">Load into editor</button>
+          </div>
+        </details>
+      </form>
+    </section>
+
+    <section aria-labelledby="h-density">
+      <h2 id="h-density">Density</h2>
+      <div class="field">
+        <select id="density" aria-label="Density">
+          <option value="compact">Compact</option>
+          <option value="comfortable">Comfortable</option>
+          <option value="spacious">Spacious</option>
+        </select>
+      </div>
+    </section>
+
+    <section aria-labelledby="h-accounts">
+      <h2 id="h-accounts">Account colours</h2>
+      <p class="hint">Tints the account row in the folder pane and the account marker on messages in multi-account views.</p>
+      <div id="accounts"></div>
+    </section>
+
+    <section aria-labelledby="h-backup">
+      <h2 id="h-backup">Backup</h2>
+      <p class="hint">Export every setting (palettes, switches, account colours) to move to another computer.</p>
+      <div class="field">
+        <button id="bExport" type="button">Export to file</button>
+        <label class="filebtn" for="bFile">Import from file</label>
+        <input id="bFile" type="file" accept="application/json,.json" hidden>
+      </div>
+      <details>
+        <summary>Copy and paste instead</summary>
+        <textarea id="bJson" rows="6" spellcheck="false" aria-label="Settings JSON"></textarea>
+        <div class="field">
+          <button id="bFill" type="button">Fill with current settings</button>
+          <button id="bLoad" type="button">Import from text</button>
+        </div>
+      </details>
+    </section>
+
+    <p id="saved" role="status"></p>
+  </main>
+  <script src="../lib/themes.js"></script>
+  <script src="../lib/transfer.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

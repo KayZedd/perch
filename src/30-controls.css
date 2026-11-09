@@ -1,0 +1,68 @@
+/* Shared controls: buttons, fields, menus, scrollbars. */
+button:not(.unified-toolbar-button, .spaces-toolbar-button, .twisty, .tab-close-button),
+.button:not(.unified-toolbar-button, .spaces-toolbar-button) {
+  border-radius: var(--button-border-radius);
+  transition: background-color 120ms ease, box-shadow 120ms ease;
+}
+
+button.primary,
+.button-primary,
+button[default] {
+  background-color: var(--perch-accent);
+  color: var(--perch-accent-text);
+  border-color: transparent;
+}
+
+input:where([type="text"], [type="search"], [type="email"], [type="password"], [type="url"], [type="number"]),
+textarea,
+search-bar input,
+.search-bar input {
+  border-radius: 10px;
+  background-color: var(--perch-card-2);
+  border-color: var(--perch-border-strong);
+}
+
+:is(input, textarea):focus-visible {
+  outline: 2px solid var(--perch-accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+menupopup,
+panel,
+.menupopup-arrowscrollbox {
+  --panel-background-color: var(--perch-card-2);
+  --panel-border-color: var(--perch-border-strong);
+  --panel-border-radius: 14px;
+  --panel-shadow-margin: 8px;
+}
+
+menupopup > menuitem[_moz-menuactive="true"],
+menupopup > menu[_moz-menuactive="true"],
+menuitem:hover,
+menu:hover {
+  background-color: var(--perch-accent-soft-2);
+  color: var(--perch-text);
+  border-radius: 8px;
+}
+
+/* Toggle buttons (Quick Filter, Unread, Starred...): the native pill indicator sits on one
+   side of the button. Replace it with a full-button pressed state. */
+.check-button::before {
+  display: none;
+}
+
+.check-button:not(.icon-button, .icon-only) {
+  padding-inline-start: calc(var(--button-padding) * 2);
+}
+
+.check-button.icon-button {
+  padding-inline-start: calc(var(--button-padding) * 2 + var(--icon-size) + 6px);
+}
+
+.check-button[aria-pressed="true"] {
+  background-color: var(--perch-accent-soft-2);
+  color: var(--perch-accent);
+  outline: 1px solid color-mix(in srgb, var(--perch-accent) 45%, transparent);
+  outline-offset: -1px;
+}

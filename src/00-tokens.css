@@ -1,0 +1,141 @@
+/* Perch design tokens. Palette first, then the remap onto Betterbird's own token layers
+   (layout-*, color-surface-*, selected-item-*, button-*, tree-card-*). */
+:root {
+  --perch-canvas: light-dark(#ece4d6, #17140f);
+  --perch-card: light-dark(#fcf9f2, #221e18);
+  --perch-card-2: light-dark(#f5efe3, #2a251e);
+  --perch-card-3: light-dark(#ece4d3, #342e25);
+  --perch-card-4: light-dark(#e1d7c1, #40392e);
+  --perch-border: light-dark(#e2d8c5, #382f26);
+  --perch-border-strong: light-dark(#cdbfa6, #4d4435);
+  --perch-text: light-dark(#2a251d, #efe7d6);
+  --perch-text-2: light-dark(#564d3f, #c4baa5);
+  --perch-muted: light-dark(#85796a, #968b78);
+  --perch-accent: light-dark(#b9502a, #e98a5c);
+  --perch-accent-text: light-dark(#ffffff, #1c1510);
+  --perch-accent-soft: color-mix(in srgb, var(--perch-accent) 11%, transparent);
+  --perch-accent-soft-2: color-mix(in srgb, var(--perch-accent) 20%, transparent);
+  --perch-unread: light-dark(#b9502a, #e98a5c);
+  --perch-danger: light-dark(#b8352f, #f08178);
+  --perch-shadow: light-dark(0 1px 0 rgb(80 60 30 / 6%), 0 1px 0 rgb(0 0 0 / 30%));
+  --perch-radius: 14px;
+  --perch-radius-md: 10px;
+
+  /* Warm the app's primitive palettes: calendar, tables and dialogs read these directly. */
+  --color-gray-05: light-dark(#fbf8f1, #fbf8f1);
+  --color-gray-10: #f4efe4;
+  --color-gray-20: #e9e2d2;
+  --color-gray-30: #d8cfbb;
+  --color-gray-40: #aaa08c;
+  --color-gray-50: #82786a;
+  --color-gray-60: #5f574b;
+  --color-gray-70: #463f35;
+  --color-gray-80: #2d2822;
+  --color-gray-90: #1d1914;
+  --color-ink-10: #f3eee3;
+  --color-ink-20: #e8e0cf;
+  --color-ink-30: #d6ccb6;
+  --color-ink-40: #a89d86;
+  --color-ink-50: #81776a;
+  --color-ink-60: #635b4e;
+  --color-ink-70: #4a4338;
+  --color-ink-80: #332d25;
+  --color-ink-90: #231e18;
+  --color-neutral-200: var(--perch-border);
+  --viewWeekendBackground: var(--perch-card-2);
+  --viewTodayBackground: color-mix(in srgb, var(--perch-accent) 9%, var(--perch-card));
+  --viewOffTimeBackground: var(--perch-card-3);
+  --perch-card-pad: 6px;
+  --perch-folder-row: 32px;
+  --perch-card-gap: 2px;
+  --viewMonthWeekLabelBackground: var(--perch-card-3);
+  --viewMonthOtherBackground: var(--perch-card-2);
+  --viewCalendarHeaderBackground: var(--perch-card-2);
+
+  /* Betterbird layout layer */
+  --layout-background-0: var(--perch-card);
+  --layout-background-1: var(--perch-card);
+  --layout-background-2: var(--perch-card-2);
+  --layout-background-3: var(--perch-card-3);
+  --layout-background-4: var(--perch-card-4);
+  --layout-color-0: var(--perch-text);
+  --layout-color-1: var(--perch-text);
+  --layout-color-2: var(--perch-text-2);
+  --layout-color-3: var(--perch-muted);
+  --layout-border-0: var(--perch-border);
+  --layout-border-1: var(--perch-border-strong);
+  --layout-border-2: var(--perch-muted);
+
+  /* Bolt surface / text layer (menus, panels, dialogs) */
+  --color-surface-base: var(--perch-card);
+  --color-surface-raised: var(--perch-card-2);
+  --color-surface-subtle: var(--perch-card-2);
+  --color-surface-lower: var(--perch-canvas);
+  --color-surface-deep: var(--perch-card-3);
+  --color-surface-border: var(--perch-border);
+  --color-surface-border-intense: var(--perch-border-strong);
+  --color-primary-default: var(--perch-accent);
+  --color-primary-soft: var(--perch-accent-soft);
+  --color-text-base: var(--perch-text);
+  --color-text-secondary: var(--perch-text-2);
+  --color-text-muted: var(--perch-muted);
+  --color-text-highlight: var(--perch-accent);
+
+  /* Selection and accents */
+  --selected-item-color: var(--perch-accent);
+  --selected-item-text-color: var(--perch-accent-text);
+  --sidebar-highlight-background-color: var(--perch-accent);
+  --sidebar-highlight-text-color: var(--perch-accent-text);
+  --tabline-color: var(--perch-accent);
+  --focus-outline-color: var(--perch-accent);
+  --new-folder-color: var(--perch-accent);
+  --toolbar-field-focus-border-color: var(--perch-accent);
+
+  /* Surfaces that used to be flat grey */
+  --toolbox-background-color: transparent;
+  --toolbox-background-color-inactive: transparent;
+  --toolbar-background-color: transparent;
+  --sidebar-background-color: var(--perch-card);
+  --sidebar-background: var(--perch-card);
+  --sidebar-border-color: transparent;
+  --sidebar-border: transparent;
+  --toolbar-field-background-color: var(--perch-card-2);
+  --search-bar-background: var(--perch-card-2);
+  --search-bar-focus-background: var(--perch-card);
+  --search-bar-border-color: var(--perch-border);
+  --row-grouped-header-bg-color: var(--perch-card-2);
+
+  /* Buttons */
+  --button-border-radius: 8px;
+  --button-min-height: 34px;
+  --button-background-color: var(--perch-card-3);
+  --button-hover-background-color: var(--perch-card-4);
+  --button-active-background-color: var(--perch-card-4);
+  --button-border-color: transparent;
+  --button-primary-background-color: var(--perch-accent);
+  --button-primary-hover-background-color: color-mix(in srgb, var(--perch-accent) 88%, black);
+  --button-primary-active-background-color: color-mix(in srgb, var(--perch-accent) 80%, black);
+  --button-primary-border-color: transparent;
+  --button-primary-shadow: none;
+  --button-primary-hover-shadow: none;
+  --input-text-border-radius: 8px;
+  --input-border-color: var(--perch-border-strong);
+  --panel-border-radius: 14px;
+
+  /* Message cards */
+  --tree-view-bg: var(--perch-card);
+  --tree-card-background: transparent;
+  --tree-card-background-current: var(--perch-card-2);
+  --tree-card-background-current-unfocused: var(--perch-card-2);
+  --tree-card-background-selected: var(--perch-accent-soft);
+  --tree-card-background-selected-unfocused: var(--perch-accent-soft);
+  --tree-card-background-selected-current: var(--perch-accent-soft-2);
+  --tree-card-background-selected-current-unfocused: var(--perch-accent-soft);
+  --tree-card-border-hover: var(--perch-border-strong);
+  --tree-card-border-selected: transparent;
+  --tree-card-border-selected-unfocused: transparent;
+  --tree-card-border-focus: var(--perch-accent);
+  --unread-color: var(--perch-unread);
+  --new-color: var(--perch-accent);
+  --new-subject-color: var(--perch-accent);
+}

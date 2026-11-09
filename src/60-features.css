@@ -1,0 +1,69 @@
+/* Feature styling: sender avatars, native one-sided account stripe removal. */
+
+/* Avatar circle is positioned inside the card, so the card only needs room on the start side. */
+#threadTree[rows="thread-card"] .card-layout:not([data-properties~="dummy"]) .card-container {
+  position: relative;
+  padding-inline-start: 52px;
+}
+
+.perch-avatar {
+  position: absolute;
+  inset-inline-start: 8px;
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  inline-size: 34px;
+  block-size: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  pointer-events: none;
+  color: light-dark(hsl(var(--h) 45% 26%), hsl(var(--h) 60% 86%));
+  background-color: light-dark(hsl(var(--h) 55% 87%), hsl(var(--h) 28% 27%));
+}
+
+:root[perch-avatars="off"] .perch-avatar {
+  display: none;
+}
+
+/* Betterbird paints a 5px one-sided stripe via inline style on account-coloured rows. Cancel it;
+   the account colour is shown by the account marker instead. */
+#threadTree .card-layout > td,
+#threadTree .table-layout > td {
+  border: 0;
+}
+
+/* Attachment preview popover (appended to the about:3pane body by the Experiment API) */
+.perch-attach-pop {
+  position: fixed;
+  z-index: 10;
+  min-inline-size: 180px;
+  max-inline-size: 320px;
+  padding: 8px;
+  border: 1px solid var(--perch-border-strong);
+  border-radius: 10px;
+  background-color: var(--perch-card-2);
+  color: var(--perch-text);
+  font-size: 12px;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 22%);
+  pointer-events: none;
+}
+
+.perch-attach-pop > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 3px 4px;
+}
+
+.perch-attach-pop small {
+  color: var(--perch-muted);
+  white-space: nowrap;
+}
+
+.perch-attach-more {
+  color: var(--perch-muted);
+}

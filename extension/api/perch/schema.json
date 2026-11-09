@@ -1,0 +1,96 @@
+[
+  {
+    "namespace": "perch",
+    "types": [
+      {
+        "id": "AccountInfo",
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        }
+      }
+    ],
+    "functions": [
+      {
+        "name": "apply",
+        "type": "function",
+        "async": true,
+        "description": "Registers the given CSS as an agent sheet for all chrome documents (replaces the previous one).",
+        "parameters": [
+          {
+            "name": "css",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "name": "clear",
+        "type": "function",
+        "async": true,
+        "parameters": []
+      },
+      {
+        "name": "setListFeatures",
+        "type": "function",
+        "async": true,
+        "description": "Turns the message-list enhancements (sender initials, attachment preview) on or off. The library sources are passed in because moz-extension URLs are untrusted for loadSubScript.",
+        "parameters": [
+          {
+            "name": "options",
+            "type": "object",
+            "properties": {
+              "avatars": {
+                "type": "boolean"
+              },
+              "attachments": {
+                "type": "boolean"
+              },
+              "avatarSource": {
+                "type": "string",
+                "optional": true
+              },
+              "attachSource": {
+                "type": "string",
+                "optional": true
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "getAccounts",
+        "type": "function",
+        "async": true,
+        "description": "Incoming servers with the key used in the folder tree (data-server-key).",
+        "parameters": []
+      },
+      {
+        "name": "devMode",
+        "type": "function",
+        "async": true,
+        "description": "Value of pref extensions.perch.devmode ('', 'selftest', 'options'); dev harness only.",
+        "parameters": []
+      },
+      {
+        "name": "log",
+        "type": "function",
+        "async": true,
+        "description": "Writes a line to stdout via dump(); for the dev harness.",
+        "parameters": [
+          {
+            "name": "line",
+            "type": "string"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,86 @@
+/* Compose window: header, formatting bar and editor as three cards on the canvas. */
+#compose-toolbox,
+#compose-toolbox toolbar,
+#composeToolbar2 {
+  background-color: var(--perch-canvas);
+  border: none;
+  box-shadow: none;
+}
+
+#composeContentBox {
+  background-color: var(--perch-canvas);
+  padding: 0 10px 10px;
+  box-sizing: border-box;
+  row-gap: 10px;
+  column-gap: 0;
+}
+
+#MsgHeadersToolbar,
+#FormatToolbox {
+  background-color: var(--perch-card);
+  border: 1px solid var(--perch-border);
+  border-radius: var(--perch-radius);
+  box-sizing: border-box;
+  margin: 0;
+}
+
+#MsgHeadersToolbar {
+  padding: 8px 10px;
+}
+
+#FormatToolbox {
+  padding: 4px 6px;
+}
+
+#FormatToolbar {
+  background: transparent;
+  border: none;
+}
+
+#messageArea {
+  background-color: var(--perch-card);
+  border: 1px solid var(--perch-border);
+  border-radius: var(--perch-radius);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+#headersSplitter,
+#attachmentSplitter,
+#contactsSplitter {
+  background: transparent;
+  border: none;
+}
+
+#contactsSidebar {
+  background-color: var(--perch-card);
+  overflow: hidden;
+}
+
+/* Recipient pills */
+.address-pill,
+mail-address-pill {
+  border-radius: 999px;
+  background-color: var(--perch-accent-soft-2);
+  border-color: transparent;
+  color: var(--perch-text);
+}
+
+.address-pill[selected],
+mail-address-pill[selected] {
+  background-color: var(--perch-accent);
+  color: var(--perch-accent-text);
+}
+
+#toAddrContainer,
+#ccAddrContainer,
+#bccAddrContainer,
+#msgSubjectContainer,
+#replyAddrContainer {
+  border-radius: 10px;
+}
+
+/* Send is the one primary action */
+#button-send {
+  padding-inline: 14px;
+}

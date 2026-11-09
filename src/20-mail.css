@@ -1,0 +1,283 @@
+/* about:3pane: floating cards instead of a flat grid with hairlines. */
+body.layout-classic,
+body.layout-vertical,
+body.layout-wide,
+body.layout-widethread,
+body.layout-stacked,
+body.layout-horizontal,
+body.account-central {
+  background-color: var(--perch-canvas);
+  padding: 0 10px 10px 0;
+  box-sizing: border-box;
+}
+
+#folderPane,
+#threadPane,
+#messagePane,
+#accountCentralBrowser {
+  background-color: var(--perch-card);
+  border: 1px solid var(--perch-border);
+  border-radius: var(--perch-radius);
+  box-shadow: var(--perch-shadow);
+}
+
+#folderPaneSplitter,
+#messagePaneSplitter {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  --splitter-size: 10px;
+}
+
+#folderPaneSplitter:not([orient="horizontal"]),
+#messagePaneSplitter:not([orient="horizontal"]),
+.layout-vertical #messagePaneSplitter,
+.layout-classic #folderPaneSplitter {
+  inline-size: 10px;
+  min-inline-size: 10px;
+}
+
+.layout-classic #messagePaneSplitter,
+.layout-wide #messagePaneSplitter,
+.layout-horizontal #messagePaneSplitter {
+  block-size: 10px;
+  min-block-size: 10px;
+}
+
+/* Folder pane */
+#folderPaneHeaderBar {
+  padding: 10px 10px 6px;
+  gap: 6px;
+}
+
+#folderPaneWriteMessage {
+  background-color: var(--perch-accent);
+  color: var(--perch-accent-text);
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+#folderPaneWriteMessage,
+#folderPaneWriteMessage .button-text,
+#folderPaneWriteMessage label {
+  color: var(--perch-accent-text);
+  opacity: 1;
+}
+
+#folderPaneWriteMessage img {
+  filter: brightness(0) invert(1);
+}
+
+#folderPaneWriteMessage:hover {
+  filter: brightness(1.08);
+}
+
+#folderTree {
+  padding: 4px 8px 8px;
+}
+
+#folderTree li > .container {
+  border-radius: 10px;
+  margin-block: 1px;
+  min-block-size: var(--perch-folder-row);
+  border: none;
+}
+
+#folderTree li > .container:hover {
+  background-color: var(--perch-card-2);
+}
+
+#folderTree li.selected > .container {
+  background-color: var(--perch-accent-soft-2);
+  color: var(--perch-text);
+  font-weight: 600;
+}
+
+#folderTree li.selected > .container .icon {
+  color: var(--perch-accent);
+  fill: color-mix(in srgb, var(--perch-accent) 30%, transparent);
+  stroke: var(--perch-accent);
+}
+
+.folder-count-badge {
+  border-radius: 999px;
+}
+
+.unread-count {
+  background-color: var(--perch-accent);
+  color: var(--perch-accent-text);
+  font-weight: 700;
+  border-radius: 999px;
+  padding-inline: 7px;
+}
+
+/* Thread pane header + list */
+#threadPaneHeaderBar,
+#threadPane > .toolbar,
+#threadPane > div:first-child {
+  background-color: transparent;
+  border: none;
+}
+
+#threadPane .thread-pane-header-title,
+#threadPaneFolderName {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#threadTree {
+  background-color: transparent;
+}
+
+/* Card view rows */
+#threadTree[rows="thread-card"] .card-layout {
+  border-radius: 12px;
+  margin-inline: 8px;
+  margin-block: var(--perch-card-gap);
+  padding: var(--perch-card-pad) 4px;
+  border-color: transparent;
+}
+
+#threadTree[rows="thread-card"] .card-layout[data-properties~="unread"] {
+  --read-status-fill: var(--perch-unread);
+  --read-status-stroke: var(--perch-unread);
+}
+
+#threadTree[rows="thread-card"] .card-layout .subject {
+  font-size: 13.5px;
+}
+
+#threadTree[rows="thread-card"] .card-layout .sender {
+  font-size: 13px;
+  color: var(--perch-text-2);
+}
+
+#threadTree[rows="thread-card"] .card-layout[data-properties~="unread"] .sender,
+#threadTree[rows="thread-card"] .card-layout[data-properties~="unread"] .subject {
+  color: var(--perch-text);
+}
+
+#threadTree[rows="thread-card"] .card-layout .date {
+  color: var(--perch-muted);
+  font-size: 11.5px;
+}
+
+/* Table view rows */
+#threadTree[rows="thread-row"] thead,
+#threadTree[rows="thread-row"] th {
+  background-color: var(--perch-card);
+  color: var(--perch-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-color: var(--perch-border);
+}
+
+#threadTree[rows="thread-row"] tbody tr {
+  border-radius: 10px;
+}
+
+#threadTree[rows="thread-row"] tbody tr:hover {
+  background-color: var(--perch-card-2);
+}
+
+#threadTree[rows="thread-row"] tbody tr.selected {
+  background-color: var(--perch-accent-soft-2);
+  color: var(--perch-text);
+}
+
+#threadTree[rows="thread-row"] tbody tr[data-properties~="unread"] {
+  color: var(--perch-text);
+}
+
+/* Message pane / header */
+#messagePane {
+  background-color: var(--perch-card);
+}
+
+#messageHeader,
+.message-header-container {
+  background-color: var(--perch-card);
+  border-color: var(--perch-border);
+}
+
+#placeholderNoMessages::before,
+#placeholderMultipleFolders::before {
+  opacity: 0.35;
+}
+
+/* Quick filter */
+#quickFilterBarContainer,
+.quick-filter-bar {
+  background-color: transparent;
+  border: none;
+}
+
+/* Selected / current thread card */
+#threadTree[rows="thread-card"] .card-layout.selected {
+  background-color: var(--perch-accent-soft-2);
+  outline: 1px solid color-mix(in srgb, var(--perch-accent) 45%, transparent);
+  outline-offset: -1px;
+}
+
+#threadTree[rows="thread-card"] .card-layout:not(.selected):hover {
+  background-color: var(--perch-card-2);
+}
+
+/* Message header: flat pill buttons instead of outlined boxes */
+.message-header-view-button,
+.message-header-view-button > .toolbarbutton-menubutton-button,
+.message-header-view-button > .toolbarbutton-menubutton-dropmarker {
+  background-color: var(--perch-card-2);
+  border-color: transparent;
+  border-radius: 999px;
+  color: var(--perch-text-2);
+}
+
+.message-header-view-button:hover,
+.message-header-view-button > .toolbarbutton-menubutton-button:hover,
+.message-header-view-button > .toolbarbutton-menubutton-dropmarker:hover {
+  background-color: var(--perch-accent-soft-2);
+  color: var(--perch-text);
+}
+
+.hdrTrashButton:hover {
+  background-color: color-mix(in srgb, var(--perch-danger) 22%, transparent);
+  color: var(--perch-danger);
+}
+
+.main-header-area,
+.message-header-container {
+  padding-inline: 8px;
+}
+
+#expandedsubjectBox,
+.message-header-subject,
+.header-subject {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+#folderPaneWriteMessage > *,
+#folderPaneWriteMessage .button-box,
+#folderPaneWriteMessage .button-icon,
+#folderPaneWriteMessage img {
+  background: none;
+  border: none;
+}
+
+/* Compose window */
+#button-send {
+  background-color: var(--perch-accent);
+  color: var(--perch-accent-text);
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+#button-send[disabled] {
+  background-color: transparent;
+  color: var(--perch-muted);
+}

@@ -17,6 +17,11 @@
   <img alt="Betterbird 153" src="https://img.shields.io/badge/Betterbird-153-5d7d5e">
 </p>
 
+<p align="center">
+  <img src="docs/screenshots/light.png" width="49%" alt="Perch, light theme">
+  <img src="docs/screenshots/dark.png" width="49%" alt="Perch, dark theme">
+</p>
+
 ## Why Perch
 
 Floating rounded panes, a dock for your spaces, calm cards for messages, light and dark, no gradients. Every feature has an off switch,
@@ -80,6 +85,11 @@ nothing phones home, and the whole thing is a few hundred lines of readable CSS 
     </td>
   </tr>
 </table>
+
+<p align="center">
+  <img src="docs/screenshots/snooze.png" width="49%" alt="Snooze popup">
+  <img src="docs/screenshots/attachments.png" width="49%" alt="Attachment preview">
+</p>
 
 Settings: Add-ons and Themes, Perch, Options.
 

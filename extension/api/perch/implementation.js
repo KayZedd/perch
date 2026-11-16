@@ -136,6 +136,7 @@ this.perch = class extends ExtensionCommon.ExtensionAPI {
         return;
       }
       const row = icon.closest(".card-layout, .table-layout");
+      win.clearTimeout(timer); // a pending older timer would still parse its message
       const mine = ++token;
       timer = win.setTimeout(() => {
         try {
@@ -211,6 +212,20 @@ this.perch = class extends ExtensionCommon.ExtensionAPI {
       entry.cleanups.push(this.#attachHandlers(doc, win, tree));
     }
     this.#observed.set(doc, entry);
+    // Closed tabs must not stay in the map (it would keep their documents alive).
+    win.addEventListener("unload", () => {
+      if (this.#observed.get(doc) !== entry) {
+        return;
+      }
+      this.#observed.delete(doc);
+      for (const fn of entry.cleanups) {
+        try {
+          fn();
+        } catch {
+          // document already gone
+        }
+      }
+    }, { once: true });
   }
 
   #unwatchAll() {

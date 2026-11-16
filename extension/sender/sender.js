@@ -1,6 +1,7 @@
 /* global PerchThemes, PerchSender */
 const $ = id => document.getElementById(id);
-const MAX = 500;
+const MAX = 500; // rows shown
+const MAX_RAW = 5000; // raw substring matches fetched before exact filtering and sorting
 const dateFmt = new Intl.DateTimeFormat(undefined, { year: "numeric", month: "short", day: "numeric" });
 
 function status(text) {
@@ -10,11 +11,11 @@ function status(text) {
 async function collect(email) {
   let page = await browser.messages.query({ author: email });
   const all = [...page.messages];
-  while (page.id && all.length < MAX) {
+  while (page.id && all.length < MAX_RAW) {
     page = await browser.messages.continueList(page.id);
     all.push(...page.messages);
   }
-  return all;
+  return { all, capped: !!page.id };
 }
 
 function render(messages, folderNames) {
@@ -52,8 +53,10 @@ async function init() {
   }
   $("who").textContent = email;
   status("Searching…");
-  const found = PerchSender.exactMatches(await collect(email), email);
-  const s = PerchSender.summarize(found);
+  const { all, capped } = await collect(email);
+  const matches = PerchSender.exactMatches(all, email); // newest first
+  const found = matches.slice(0, MAX);
+  const s = PerchSender.summarize(matches);
   const accountNames = new Map((await browser.accounts.list()).map(a => [a.id, a.name]));
   const folderNames = new Map();
   for (const m of found) {
@@ -67,7 +70,8 @@ async function init() {
   if (s.first && s.last) parts.push(`${dateFmt.format(s.first)} to ${dateFmt.format(s.last)}`);
   $("summary").textContent = parts.join(" · ");
   render(found, folderNames);
-  status(found.length ? (found.length >= MAX ? `Showing the newest ${MAX}.` : "") : "No messages found.");
+  const more = matches.length > MAX || capped;
+  status(found.length ? (more ? `Showing the newest ${found.length}.` : "") : "No messages found.");
 }
 
 init().catch(e => status(String(e.message ?? e)));

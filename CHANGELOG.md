@@ -4,6 +4,11 @@
 
 - Snooze: a wake finishing while a new snooze was saved could drop the new entry; both now run through one queue.
 - Snooze: a failing wake (server offline, folder gone) retried every second; now once a minute.
+- Snooze: a failing theme apply at startup no longer skips scheduling and waking snoozed mail.
+- Attachment preview: sizes just under a unit roll over ("1 MB", not "1024 KB"); long emoji names no longer break.
+- Unsubscribe: "+" in a mailto subject or body stays a plus.
+- Sender page: shows the newest 500 of up to 5000 matches, not an arbitrary 500; the cap notice now appears.
+- List enhancements: closed mail tabs are released; hover no longer leaves stale attachment parsers running.
 
 ## 0.1.0
 

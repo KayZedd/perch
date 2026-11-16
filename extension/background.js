@@ -269,7 +269,14 @@ async function selfTest() {
 
 (async () => {
   try {
-    await applyAll();
+    // Snooze must not depend on theming: a failing applyAll (accounts not ready, bad CSS fetch)
+    // used to skip the wake-up scheduling for the whole session.
+    try {
+      await applyAll();
+    } catch (e) {
+      console.error("Perch: apply failed", e);
+      await log("apply failed: " + e);
+    }
     await scheduleAlarm();
     await processDue();
     // DEV-BEGIN

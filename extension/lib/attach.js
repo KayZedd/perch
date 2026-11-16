@@ -4,12 +4,14 @@
   function formatSize(bytes) {
     const n = Number(bytes);
     if (!Number.isFinite(n) || n < 0) return "";
-    if (n < 1024) return `${Math.round(n)} B`;
+    if (Math.round(n) < 1024) return `${Math.round(n)} B`;
     const units = ["KB", "MB", "GB"];
     let v = n / 1024;
     let i = 0;
-    while (v >= 1024 && i < units.length - 1) { v /= 1024; i++; }
-    return `${v >= 10 || Number.isInteger(v) ? Math.round(v) : v.toFixed(1)} ${units[i]}`;
+    // Compare the rounded value so 1048575 B rolls over to "1 MB", not "1024 KB".
+    while (Math.round(v) >= 1024 && i < units.length - 1) { v /= 1024; i++; }
+    const tenth = Math.round(v * 10) / 10;
+    return `${v >= 10 ? Math.round(v) : tenth} ${units[i]}`;
   }
 
   // Shortens the middle of a long file name but keeps the extension: "very-long-na….pdf"
@@ -18,7 +20,8 @@
     if (s.length <= max) return s;
     const dot = s.lastIndexOf(".");
     const ext = dot > 0 && s.length - dot <= 8 ? s.slice(dot) : "";
-    return s.slice(0, max - ext.length - 1) + "…" + ext;
+    // Cut by code point: slicing UTF-16 units can split an emoji into a lone surrogate.
+    return Array.from(s).slice(0, max - ext.length - 1).join("") + "…" + ext;
   }
 
   // list: [{ name, size }] -> { items: [{name, size}] (max `limit`), more }

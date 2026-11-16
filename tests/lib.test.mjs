@@ -285,3 +285,23 @@ test("attach: shortName keeps the extension, summarize caps the list", () => {
   assert.equal(sum.more, 3);
   assert.deepEqual(At.summarize(null), { items: [], more: 0 });
 });
+
+// ---- regressions from the bug hunt
+test("attach: sizes roll over instead of printing 1024 KB / 1024 MB / 1024 B", () => {
+  assert.equal(At.formatSize(1048575), "1 MB");
+  assert.equal(At.formatSize(1073741823), "1 GB");
+  assert.equal(At.formatSize(1023.6), "1 KB");
+  assert.equal(At.formatSize(10239), "10 KB");
+  assert.equal(At.formatSize(1536), "1.5 KB");
+});
+
+test("attach: shortName never leaves a lone surrogate", () => {
+  const out = At.shortName("😀".repeat(40) + ".pdf");
+  assert.ok(out.isWellFormed());
+  assert.ok(out.endsWith("….pdf"));
+});
+
+test("unsub: '+' in a mailto query is a literal plus", () => {
+  assert.equal(U.parse("<mailto:u@x.com?subject=a+b&body=1+1>").mailto.subject, "a+b");
+  assert.equal(U.parse("<mailto:u@x.com?subject=a%20b>").mailto.subject, "a b");
+});

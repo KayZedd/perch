@@ -6,7 +6,8 @@
     const q = rest.indexOf("?");
     const to = decodeURIComponent(q === -1 ? rest : rest.slice(0, q)).trim();
     if (!/^[^\s@,;<>]+@[^\s@,;<>]+$/.test(to)) return null;
-    const params = new URLSearchParams(q === -1 ? "" : rest.slice(q + 1));
+    // RFC 6068: "+" is a literal plus in mailto query values, not a space.
+    const params = new URLSearchParams(q === -1 ? "" : rest.slice(q + 1).replaceAll("+", "%2B"));
     return { to, subject: params.get("subject") || "unsubscribe", body: params.get("body") || "" };
   }
 

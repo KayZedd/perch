@@ -7,6 +7,7 @@
 
 const SNOOZE_FOLDER = "Snoozed";
 const ALARM = "perch-wake";
+const POLL_MS = 1000;
 let baseCss = null;
 let avatarSource = null;
 let attachSource = null;
@@ -160,28 +161,56 @@ async function scheduleAlarm() {
   browser.alarms.create(ALARM, { when: Math.max(next, Date.now() + 60 * 1000) });
 }
 
+// Finds the woken message in its origin folder (polling up to `attempts` seconds) and marks it unread.
+async function markUnread(e, attempts) {
+  const origin = await browser.folders.get(e.originId);
+  for (let i = 0; i < attempts; i++) {
+    const back = await findByHeaderId(origin, e.headerMessageId);
+    if (back) {
+      await browser.messages.update(back.id, { read: false });
+      return true;
+    }
+    if (i < attempts - 1) await new Promise(r => setTimeout(r, POLL_MS));
+  }
+  return false;
+}
+
 async function processDueNow() {
   const list = await getSnoozed();
   const due = PerchSnooze.dueEntries(list, new Date());
   const keep = list.filter(e => !due.includes(e));
   for (const e of due) {
     try {
+      if (e.woken) {
+        // Already moved back; only the unread flag is outstanding (the folder was slow to show it).
+        if (await markUnread(e, 1)) {
+          await log(`marked unread ${e.headerMessageId}`);
+        } else if ((e.tries ?? 0) < 5) {
+          keep.push({ ...e, tries: (e.tries ?? 0) + 1, wakeAt: Date.now() + 60 * 1000 });
+        } else {
+          await log(`gave up marking unread ${e.headerMessageId}`);
+        }
+        continue;
+      }
       const snoozeFolder = await browser.folders.get(e.snoozeId);
       const msg = await findByHeaderId(snoozeFolder, e.headerMessageId);
       if (msg) {
         await browser.messages.move([msg.id], e.originId);
-        const back = await findByHeaderId(await browser.folders.get(e.originId), e.headerMessageId);
-        if (back) {
-          await browser.messages.update(back.id, { read: false });
+        // IMAP and similar folders list the moved message a moment later: poll, then fall back to a retry.
+        if (await markUnread(e, 10)) {
+          await log(`woke ${e.headerMessageId}`);
+        } else {
+          await log(`woke ${e.headerMessageId}, unread flag pending`);
+          keep.push({ ...e, woken: true, tries: 0, wakeAt: Date.now() + 60 * 1000 });
         }
-        await log(`woke ${e.headerMessageId}`);
       } else {
         await log(`snoozed message gone, dropping ${e.headerMessageId}`);
       }
     } catch (err) {
       // Folder deleted or server offline: keep the entry and retry on the next alarm.
       await log(`wake failed for ${e.headerMessageId}: ${err}`);
-      keep.push(e);
+      if (!e.woken) keep.push(e);
+      else if ((e.tries ?? 0) < 5) keep.push({ ...e, tries: (e.tries ?? 0) + 1, wakeAt: Date.now() + 60 * 1000 });
     }
   }
   await setSnoozed(keep);

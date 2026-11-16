@@ -9,6 +9,7 @@
 - Unsubscribe: "+" in a mailto subject or body stays a plus.
 - Sender page: shows the newest 500 of up to 5000 matches, not an arbitrary 500; the cap notice now appears.
 - List enhancements: closed mail tabs are released; hover no longer leaves stale attachment parsers running.
+- Snooze: a woken message is marked unread even when the folder lists the moved message late (IMAP); retried once a minute for up to 5 minutes.
 
 ## 0.1.0
 

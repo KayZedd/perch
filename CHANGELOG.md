@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Snooze: a wake finishing while a new snooze was saved could drop the new entry; both now run through one queue.
+- Snooze: a failing wake (server offline, folder gone) retried every second; now once a minute.
+
 ## 0.1.0
 
 First public release.

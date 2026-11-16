@@ -110,7 +110,18 @@ async function findByHeaderId(folder, headerMessageId) {
   return page.messages[0] ?? null;
 }
 
-async function snoozeMessage(messageId, wakeAt) {
+// Snooze and wake both read-modify-write the stored list; run them one at a time so a wake
+// that finishes while a new snooze is being saved cannot overwrite (and lose) the new entry.
+let chain = Promise.resolve();
+const serial = fn => {
+  const run = chain.then(fn);
+  chain = run.catch(() => {});
+  return run;
+};
+const snoozeMessage = (messageId, wakeAt) => serial(() => snoozeNow(messageId, wakeAt));
+const processDue = () => serial(processDueNow);
+
+async function snoozeNow(messageId, wakeAt) {
   if (!PerchSnooze.isValidWake(wakeAt, new Date())) {
     throw new Error("Snooze time must be in the future");
   }
@@ -144,11 +155,12 @@ async function scheduleAlarm() {
     return;
   }
   const next = Math.min(...list.map(e => e.wakeAt));
-  // Alarms fire no earlier than ~1 minute out in practice; overdue ones run via processDue.
-  browser.alarms.create(ALARM, { when: Math.max(next, Date.now() + 1000) });
+  // Floor of one minute: an overdue entry that keeps failing (server offline, folder gone) is
+  // retried once a minute instead of in a tight loop. Startup runs processDue directly.
+  browser.alarms.create(ALARM, { when: Math.max(next, Date.now() + 60 * 1000) });
 }
 
-async function processDue() {
+async function processDueNow() {
   const list = await getSnoozed();
   const due = PerchSnooze.dueEntries(list, new Date());
   const keep = list.filter(e => !due.includes(e));

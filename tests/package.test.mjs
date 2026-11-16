@@ -31,3 +31,10 @@ test("the staged release has no dev hooks, no debug output, and still has what t
   assert.ok(existsSync(join(dir, "css/perch.css")));
   assert.ok(!existsSync(join(dir, "dev")));
 });
+
+test("snooze and wake mutate the stored list through one serial queue, and retries wait a minute", () => {
+  const bg = readFileSync(new URL("../extension/background.js", import.meta.url), "utf8");
+  assert.match(bg, /const snoozeMessage = .*serial\(/);
+  assert.match(bg, /const processDue = .*serial\(/);
+  assert.match(bg, /Date\.now\(\) \+ 60 \* 1000/);
+});
